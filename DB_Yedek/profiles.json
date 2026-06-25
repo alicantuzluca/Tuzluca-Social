@@ -1,0 +1,30 @@
+[
+    {
+        "id":  "5d7f6708-24ec-4eae-93af-142cb1114064",
+        "user_id":  "0a35bd25-ea60-4f3a-8552-32a94a91d5b7",
+        "username":  "alican",
+        "display_name":  "Alican Tuzluca",
+        "phone_number":  "0503245419",
+        "avatar_color":  "#007AFF",
+        "bio":  "",
+        "theme":  "dark",
+        "language":  "tr",
+        "is_online":  false,
+        "last_seen":  "2026-06-22T19:04:28.1324+00:00",
+        "created_at":  "2026-06-22T19:04:28.1324+00:00"
+    },
+    {
+        "id":  "66c2dba2-1abc-4e66-93ff-f64284b172df",
+        "user_id":  "66a0fdc6-942d-4afa-8134-04aa1fb73603",
+        "username":  "seyznr",
+        "display_name":  "Şeyma Nur Öztürk",
+        "phone_number":  "6161616161",
+        "avatar_color":  "#FF3B30",
+        "bio":  "",
+        "theme":  "dark",
+        "language":  "tr",
+        "is_online":  false,
+        "last_seen":  "2026-06-22T19:05:35.41528+00:00",
+        "created_at":  "2026-06-22T19:05:35.41528+00:00"
+    }
+]

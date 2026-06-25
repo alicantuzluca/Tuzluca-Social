@@ -1,0 +1,219 @@
+/* ─── Base ─────────────────────────────────────────────────────────────── */
+:root {
+  --iphone-frame: linear-gradient(145deg, #c8cdd8 0%, #4a4b4f 20%, #1c1d1f 80%, #787c85 100%);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: transparent; /* Windows şeffaflık için */
+  overflow: hidden;
+  user-select: none;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent; /* Windows şeffaflık için */
+}
+
+/* ─── Device Frame ──────────────────────────────────────────────────────── */
+.device-frame {
+  padding: 14px;
+  background: var(--iphone-frame);
+  border-radius: 57px;
+  position: relative;
+  -webkit-app-region: drag; /* Çerçeveden tutup sürükleme */
+  box-shadow:
+    inset 0 0 0 1.5px rgba(255,255,255,0.25),
+    inset 0 0 0 5px rgba(0,0,0,0.6),
+    0 30px 60px -10px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(0,0,0,0.4);
+}
+
+/* Metal side buttons */
+.device-frame::before {
+  content: '';
+  position: absolute;
+  top: 130px; right: -4px;
+  width: 4px; height: 90px;
+  background: linear-gradient(90deg, #666 0%, #aaa 50%, #555 100%);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 0 80px 0 #888, 0 90px 0 #666;
+}
+
+.phone-container {
+  width: 380px;
+  height: 780px;
+  border-radius: 44px;
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  -webkit-app-region: drag; /* ARTIK TÜM TELEFON SÜRÜKLENEBİLİR */
+  box-shadow: inset 0 0 0 3px #0a0a0a;
+}
+
+/* Sürüklemeyi Engelleyen Öğeler (İçerik) */
+.phone-container * {
+  -webkit-app-region: no-drag;
+}
+
+/* Sadece arkaplan ve grid tıklanabilir olmalı */
+.home-bg, .home-grid, .dock-container {
+  -webkit-app-region: drag !important;
+}
+
+/* ─── Hardware Buttons ──────────────────────────────────────────────────── */
+.hardware-button {
+  position: absolute;
+  background: linear-gradient(90deg, #555 0%, #999 40%, #777 100%);
+  border-radius: 3px;
+  z-index: 0;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.5), 1px 0 1px rgba(255,255,255,0.1);
+  transition: background 0.1s;
+}
+.hardware-button:active { background: linear-gradient(90deg, #333 0%, #666 40%, #444 100%); }
+
+.mute-switch  { width: 4px; height: 28px; left: -6px; top: 120px; }
+.volume-up    { width: 4px; height: 60px; left: -6px; top: 175px; }
+.volume-down  { width: 4px; height: 60px; left: -6px; top: 248px; }
+.power-button { width: 4px; height: 90px; right: -6px; top: 205px; }
+.minimize-button { width: 4px; height: 60px; right: -6px; top: 420px; }
+
+/* ─── App Icon ──────────────────────────────────────────────────────────── */
+.app-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.35);
+  overflow: hidden;
+  -webkit-app-region: no-drag;
+  font-size: 30px;
+}
+
+.app-label {
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 5px;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  letter-spacing: -0.1px;
+  white-space: nowrap;
+}
+
+/* ─── Drag / Home Indicator ─────────────────────────────────────────────── */
+.drag-area {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 40px;
+  -webkit-app-region: drag;
+  z-index: 9999;
+}
+
+.home-indicator-container {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 8px;
+  z-index: 9999;
+  -webkit-app-region: no-drag;
+  cursor: grab;
+}
+
+.home-indicator {
+  width: 130px;
+  height: 5px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.6);
+  transition: background 0.3s;
+}
+
+/* ─── iOS Settings Toggle ───────────────────────────────────────────────── */
+.ios-toggle-track {
+  width: 51px; height: 31px;
+  border-radius: 16px;
+  display: flex; align-items: center;
+  padding: 2px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ios-toggle-thumb {
+  width: 27px; height: 27px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 0; }
+
+/* ─── Progress animation for Safari ────────────────────────────────────── */
+@keyframes progress {
+  from { width: 0%; }
+  to   { width: 95%; }
+}
+
+/* ─── Keypad buttons ─────────────────────────────────────────────────────  */
+.ios-keypad-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255,255,255,0.18);
+  color: white;
+  font-size: 34px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.ios-keypad-btn-letters {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ─── Settings Rows ─────────────────────────────────────────────────────── */
+.settings-group {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 16px 24px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: white;
+  border-bottom: 0.5px solid #c6c6c8;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.settings-row:last-child { border-bottom: none; }
+.settings-row:active { background: #e5e5ea; }
